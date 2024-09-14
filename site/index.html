@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+  content="SEN12-WATER: A New Dataset for Hydrological Applications and Its Benchmarking">
+  <meta name="keywords" content="Drought, Water Mask, Segmentation, Next-frame Prediction, Multimodal, Multitemporal">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- 
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image:src" content="http://marigoldmonodepth.github.io/images/marigold_logo_square.jpg">
+  <meta name="twitter:title" content="Marigold Depth">
+  <meta name="twitter:description" content="Repurposing Diffusion-Based Image Generators for Monocular Depth Estimation">
+  <meta name="twitter:creator" content="@AntonObukhov1"> 
+  -->
+  
+  <title>SEN12-WATER: A New Dataset for Hydrological Applications and Its Benchmarking</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FWSVCGZTG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    
+    gtag('js', new Date());
+    
+    gtag('config', 'G-1FWSVCGZTG');
+  </script>
+  
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+  
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/twentytwenty.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <!-- <link rel="icon" href="./images/favicon.svg"> -->
+  
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./js/jquery.event.move.js"></script>
+  <script src="./js/jquery.twentytwenty.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/fontawesome.all.min.js"></script>
+  
+  <!--MathJax-->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  
+  
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">SEN12-WATER: A New Dataset for Hydrological Applications and Its Benchmarking</h1>
+            <h3 class="title has-text-centered">IEEE Transactions on Geoscience and Remote Sensing (under review)</h3>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="" target="_blank" rel="noopener noreferrer">
+                  Luigi Russo (1)</a>,
+                </span>
+                <span class="author-block">
+                  <a href="" target="_blank" rel="noopener noreferrer">
+                    Francesco Mauro (2) </a>,
+                  </span>
+                  <span class="author-block">
+                    <a href="https://alessandrosebastianelli.github.io/" target="_blank" rel="noopener noreferrer">
+                      Alessandro Sebastianelli (3)</a>,
+                    </span>
+                    <span class="author-block">
+                      <a href="" target="_blank" rel="noopener noreferrer">
+                        Paolo Gamba (1) </a>,
+                      </span>
+                      <span class="author-block">
+                        <a href="" target="_blank" rel="noopener noreferrer">
+                          Silvia Ullo (2) </a>,
+                        </span>
+                      </div>
+                      
+                      <div class="is-size-5 publication-authors">
+                        <span class="author-block">(1) University of Pavia, (2) University of Sannio, (3) European Space Agency</span>
+                      </div>
+                      
+                      <div class="column has-text-centered">
+                        <div class="publication-links">
+                          <span class="link-block">
+                            <a href="https://arxiv.org/" target="_blank" rel="noopener noreferrer"
+                            class="external-link button is-normal is-rounded is-dark">
+                            <span class="icon">
+                              <i class="fas fa-file-pdf" style="color: orangered"></i>
+                            </span>
+                            <span>Paper</span>
+                          </a>
+                        </span>
+                        <!-- Code Link. -->
+                        <span class="link-block">
+                          <a href="https://github.com/UnisannioEOLab/SEN12-WATER" target="_blank" rel="noopener noreferrer"
+                          class="external-link button is-normal is-rounded is-dark">
+                          <span class="icon">
+                            <i class="fab fa-github"></i>
+                          </span>
+                          <span>Code</span>
+                        </a>
+                      </span>
+                      <!-- Philab Github Page -->
+                      <span class="link-block">
+                        <a href="https://github.com/UnisannioEOLab" target="_blank" rel="noopener noreferrer"
+                        class="external-link button is-normal is-rounded is-dark">
+                        <span class="icon">
+                          <i class="fab fa-github"></i>
+                        </span>
+                        <span>Data</span>
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+      <section class="section pt-0">
+        <div class="container is-max-desktop">
+          <!-- Abstract. -->
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Overview</h2>
+              <div class="content has-text-justified">
+                <p>
+                  Climate change and increasing droughts pose significant challenges to water resources management worldwide. These issues lead to severe 
+                  water shortages, threatening ecosystems, agriculture, and human communities. To advance the fight against these challenges, we present 
+                  a new dataset, SEN12-WATER, along with a benchmark using a novel end-to-end Deep Learning (DL) framework for proactive drought-related
+                  analysis. The dataset, identified as a spatiotemporal datacube, integrates SAR polarization, elevation, slope, and multispectral optical
+                  bands. Our DL framework enables the analysis and estimation of water losses over time in reservoirs of interest, revealing significant 
+                  insights into water dynamics for drought analysis by examining temporal changes in physical quantities like water volume. Our methodology
+                  leverages the multitemporal and multimodal characteristics of the proposed dataset, enabling robust generalization and advancing drought
+                  understanding, contributing to climate change resilience and sustainable water resource management. The proposed framework involves,
+                  among the several components, speckle noise remove from SAR data, a water body segmentation through a U-Net architecture, the time series
+                  analysis and the predictive capability of a Time Distributed-Convolutional Neural Network (TD-CNN). Results are validated through ground
+                  truth data acquired on-ground via dedicated sensors and (tailored) metrics, such as Precision, Recall, Intersection over Union, 
+                  Mean Squared Error, Structural Similarity Index Measure and Peak Signal-to-Noise Ratio.
+                </p>
+                
+                <p>
+                  The gallery below presents results on three areas of interest, putting in comparison one our model and the ground thruth. 
+                  Use the slider and gestures to reveal details on both sides.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--/ Abstract. -->
+        </div>
+      </section>
+      
+      <!--
+      <section class="hero is-light is-small">
+        <div class="hero-body">
+          <div class="container">
+            <div id="results-carousel-horizontal" class="carousel results-carousel">
+              
+              <div class="twoitem">
+                <div class="twentytwenty-container twentytwenty-container-top">
+                  <div class="cmpcontent">
+                    <img src="./images/int2012_aut_gt.png">
+                  </div>
+                  <div class="cmpcontent">
+                    <img src="./images/int2012_aut_blstm.png">
+                  </div>
+                </div>
+                <div class="twentytwenty-container twentytwenty-container-bottom">
+                  <div class="cmpcontent">
+                    <img src="./images/int2013_aut_gt.png">
+                  </div>
+                  <div class="cmpcontent">
+                    <img src="./images/int2013_aut_blstm.png">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="twoitem">
+                <div class="twentytwenty-container twentytwenty-container-top">
+                  <div class="cmpcontent">
+                    <img src="./images/int2014_che_gt.png">
+                  </div>
+                  <div class="cmpcontent">
+                    <img src="./images/int2014_che_blstm.png">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="twoitem">
+                <div class="twentytwenty-container twentytwenty-container-top">
+                  <div class="cmpcontent">
+                    <img src="./images/int2016_ita_gt.png">
+                  </div>
+                  <div class="cmpcontent">
+                    <img src="./images/int2016_ita_blstm.png">
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      
+      <script>
+        $(window).on('load', function() {
+          bulmaCarousel.attach('#results-carousel-horizontal', {
+            slidesToScroll: 1,
+            slidesToShow: 3,
+            loop: true,
+            autoplay: true,
+          });
+          
+          bulmaCarousel.attach('#results-carousel-vertical', {
+            slidesToScroll: 1,
+            slidesToShow: 5,
+            loop: true,
+            autoplay: true,
+          });
+          
+          $(".twentytwenty-container-top").twentytwenty({
+            before_label: 'Ground Truth',
+            after_label: 'bLSTM',
+            default_offset_pct: 0.75,
+          });
+          $(".twentytwenty-container-bottom").twentytwenty({
+            before_label: 'Ground Truth',
+            after_label: 'bLSTM',
+            default_offset_pct: 0.5,
+          });
+        });
+      </script>
+      -->
+
+      <section class="section">
+        <div class="container is-max-desktop">
+          <!-- Method. -->
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">How it works</h2>
+              <div class="content has-text-justified">
+                
+                <p>
+                  Proposed end-to-end framework and methodology composed of several blocks: segmentation of
+                  water basins, prediction of future water and drought masks and evaluation of the quantity 
+                  of water pixels within each segmented mask.
+                </p>
+                
+                <img id="method_train" width="100%" src="./images/model.png" alt="Flowchart of our SIS forecasting procedure"/>
+                
+                <!--
+                <h3 class="title has-text-centered">
+                  Results
+                </h3>
+                
+                <p>
+                  We compare the overall forecast results of all the models, i.e. the results of a 24 hours-ahead prediction averaged over time sequences
+                  spanning from 2012 to 2017. The bLSTM model outperforms other models in terms of normalized mean absolute error (nMAE). Note that
+                  normalization is done separately by season, since annual variations are very large. This indicates that the bLSTM model is the most 
+                  accurate model for forecasting solar irradiance values.
+                </p>
+                
+                <img id="comparison" width="100%" src="./images/results.png" alt="Error (nMAE) values calculated for the validation period (2012-2017) for Austria divided by seasons. For all season, the bLSTM is
+                outclassing the other models including the standard Numerical Weather Prediction (NWP)."/>
+                
+                <p class="mt-5">
+                  Refer to the pdf paper linked above for more details on qualitative and quantitatives results.
+                </p>
+                -->
+              </div>
+            </div>
+          </div>
+          <!--/ Method. -->
+        </div>
+      </section>
+      
+      
+      <section class="section pt-0" id="BibTeX">
+        <div class="container is-max-desktop content">
+          <h2 class="title">Citation</h2>
+          <pre class="selectable"><code>@InProceedings{sen12water2024,
+            title={SEN12-WATER: A New Dataset for Hydrological Applications and Its Benchmarking},
+            author={Russo, Luigi and Mauro, Francesco and Sebastianelli, Alessandro and Gamba, Paolo and Ullo, Silvia},
+            journal={Transactions on Geoscience and Remote Sensing},
+            publisher={IEEE}
+            year={2024}
+          }</code></pre>
+        </div>
+      </section>
+      
+      
+      <footer class="footer pt-4 pb-0">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-8">
+              <div class="content">
+                <p>
+                  Website template based on
+                  <a href="https://github.com/nerfies/nerfies.github.io">
+                    Nerfies
+                  </a>
+                  and licensed under
+                  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+                    CC-BY-SA-4.0
+                  </a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+    </body>
+    </html>
+    
